@@ -1,4 +1,11 @@
 terraform {
+  backend "remote" {
+    organization = "prototype"
+
+    workspaces {
+      name = "intersol"
+    }
+  }
   required_providers {
     intersight = {
       source = "CiscoDevNet/intersight"
@@ -18,7 +25,7 @@ resource "intersight_sol_policy" "sol1" {
   enabled   = true 
   baud_rate = 9600
   com_port  = "com1"
-  ssh_port  = 1098
+  ssh_port  = 1096
   organization {
     object_type = "organization.Organization"
     moid = data.intersight_organization_organization.default_org.moid 
